@@ -15,11 +15,9 @@ npm i --save-dev @accuser/svelte-plausible-analytics
 
 Add Plausible Analytics to the root layout to track page views.
 
-```js
-
 ```svelte
 <script>
-	import { PlausibleAnalytics } from '@accuser/svelte-plausible-analytics';
+  import { PlausibleAnalytics } from '@accuser/svelte-plausible-analytics';
 </script>
 
 <PlausibleAnalytics />
