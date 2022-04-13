@@ -2,9 +2,20 @@
 
 Add Plausible Analytics to a SvelteKit app and track analytics and custom events.
 
-## Example
+*Important* - requires a [Plausible Analytics](https://plausible.io/) account.
+All events require custom goals to be configured in the Plausible Analytics dashboard.
 
-Add Plausible Analytics to the root layout:
+## Install the package
+
+```bash
+npm i --save-dev @accuser/svelte-plausible-analytics
+```
+
+## Examples
+
+Add Plausible Analytics to the root layout to track page views.
+
+```js
 
 ```svelte
 <script>
