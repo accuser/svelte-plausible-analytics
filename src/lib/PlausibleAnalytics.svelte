@@ -1,6 +1,34 @@
+<script context="module" lang="ts">
+	interface PlausibleTracker {
+		(event: string, options?: any): void;
+	}
+
+	interface PlausibleWindow extends Window {
+		plausible: PlausibleTracker;
+	}
+
+	declare let window: PlausibleWindow;
+
+	const plausible: PlausibleTracker = (event, options) => window.plausible(event, options);
+</script>
+
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { dev } from '$app/env';
 	import { page } from '$app/stores';
+	import { pa } from '$lib/store';
+
+	onMount(() => {
+		pa.subscribe((events) => {
+			let next = events.length && events.shift();
+
+			while (next) {
+				const { event, data } = next;
+				plausible(event, data);
+				next = events.shift();
+			}
+		});
+	});
 
 	/**
 	 * The API host.
@@ -41,8 +69,9 @@
 	 * Allow analytics to track on localhost (useful in hybrid apps).
 	 * @defaultValue `false`, unless `enabled` is `true` in development mode.
 	 */
-	export let local = enabled && dev;
+	export let local: boolean = enabled && dev;
 
+	$: api = `${apiHost}/api/event`;
 	$: src = [
 		`${apiHost}/js/script`,
 		compat ? 'compat' : undefined,
@@ -56,6 +85,13 @@
 
 <svelte:head>
 	{#if enabled}
-		<script data-domain={domain.toString()} defer {src}></script>
+		<script data-api={api} data-domain={domain.toString()} defer {src}></script>
+		<script>
+			window.plausible =
+				window.plausible ||
+				function () {
+					(window.plausible.q = window.plausible.q || []).push(arguments);
+				};
+		</script>
 	{/if}
 </svelte:head>
