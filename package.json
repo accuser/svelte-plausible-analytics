@@ -1,6 +1,6 @@
 {
   "name": "@accuser/svelte-plausible-analytics",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Plausible Analytics library for SvelteKit apps.",
   "keywords": [
     "analytics",
