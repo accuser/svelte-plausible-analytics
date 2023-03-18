@@ -62,6 +62,9 @@
 			"svelte": "./dist/index.js"
 		}
 	},
+	"files": [
+		"dist"
+	],
 	"peerDependencies": {
 		"@sveltejs/kit": "1.12.0",
 		"svelte": "^3.57.0"
