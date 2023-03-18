@@ -85,8 +85,7 @@
 	 */
 	export let outboundLinks = false;
 
-
- $: api = `${apiHost}/api/event`;
+	$: api = `${apiHost}/api/event`;
 	$: src = [
 		`${apiHost}/js/script`,
 		compat ? 'compat' : undefined,
