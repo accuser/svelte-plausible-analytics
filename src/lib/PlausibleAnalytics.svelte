@@ -59,6 +59,13 @@
 	export let enabled = !dev;
 
 	/**
+	 * Automatically track file downloads
+	 * (Requires manual goal configuration on Plausible.)
+	 * @defaultValue `false`
+	 */
+	export let fileDownloads = false;
+
+	/**
 	 * Automatically follow frontend navigation when using hash-based routing.
 	 *
 	 * @defaultValue `false`
@@ -71,12 +78,22 @@
 	 */
 	export let local: boolean = enabled && dev;
 
-	$: api = `${apiHost}/api/event`;
+	/**
+	 * Automatically track clicks on outbound links from your website.
+	 * (Requires manual goal configuration on Plausible.)
+	 * @defaultValue `false`
+	 */
+	export let outboundLinks = false;
+
+
+ $: api = `${apiHost}/api/event`;
 	$: src = [
 		`${apiHost}/js/script`,
 		compat ? 'compat' : undefined,
+		fileDownloads ? 'file-downloads' : undefined,
 		hash ? 'hash' : undefined,
 		local ? 'local' : undefined,
+		outboundLinks ? 'outbound-links' : undefined,
 		'js'
 	]
 		.filter(Boolean)
