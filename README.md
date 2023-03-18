@@ -48,3 +48,9 @@ Track custom events:
 
 <button on:click={addEvent('click')}>Click me!</button>
 ```
+
+## Contributors
+
+Matthew Gibbons - [@accuser](https://github.com/accuser)
+
+Jeffrey Palmer - [@JeffreyPalmer](https://github.com/JeffreyPalmer)
