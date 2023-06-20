@@ -54,3 +54,5 @@ Track custom events:
 Matthew Gibbons - [@accuser](https://github.com/accuser)
 
 Jeffrey Palmer - [@JeffreyPalmer](https://github.com/JeffreyPalmer)
+
+Dan Grebb - [@dgrebb](https://github.com/dgrebb)
