@@ -1,6 +1,6 @@
 {
 	"name": "@accuser/svelte-plausible-analytics",
-	"version": "0.5.0",
+	"version": "0.5.1",
 	"description": "Plausible Analytics library for SvelteKit apps.",
 	"keywords": [
 		"analytics",
@@ -47,7 +47,7 @@
 	],
 	"peerDependencies": {
 		"@sveltejs/kit": "^1.20.4",
-		"svelte": "^4.0.0"
+		"svelte": "^3.59.1 || ^4.0.0"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
