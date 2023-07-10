@@ -91,7 +91,7 @@
 	 * (See Plausible's documentation for dashboard configuration details.)
 	 * @defaultValue `Object`
 	 */
-	export let pageviewprops = {};
+	export let pageviewprops = false as { prop: string | boolean } | boolean;
 
 	$: api = `${apiHost}/api/event`;
 	$: src = [
