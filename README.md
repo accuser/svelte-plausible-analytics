@@ -25,6 +25,24 @@ Add Plausible Analytics to the root layout to track page views.
 <slot />
 ```
 
+Add custom properties to page views:
+
+```svelte
+<script>
+  import { PlausibleAnalytics } from '@accuser/svelte-plausible-analytics';
+</script>
+
+<PlausibleAnalytics pageviewprops={{"fancy-hyphenated-prop": "fancy value string", somekindofboolean: false}} />
+
+<slot />
+```
+
+*Note*: as per the Plausible documentation, up to 30 custom properties can be included alongside a pageview by adding multiple attributes.
+
+Set custom properties in the `pageviewprops` Svelte prop on the `<PlausibleAnalytics />` component. 
+
+The Plausible-required `event-` prefix can be omitted. Eg. `<PlausibleAnalytics pageviewprops={{"my-fancy-prop": "a value"}} />` becomes `<script src="https://plausible.io/js/script.pageview-props.js" event-my-fancy-prop"="a value"></script>`.
+
 Track analytics events:
 
 ```svelte

@@ -85,6 +85,14 @@
 	 */
 	export let outboundLinks = false;
 
+	/**
+	 * Add custom properties to pageviews.
+	 * This is a standard single-level object with {"name" | name: "string" | boolean}.
+	 * (See Plausible's documentation for dashboard configuration details.)
+	 * @defaultValue `Object`
+	 */
+	export let pageviewprops = {};
+
 	$: api = `${apiHost}/api/event`;
 	$: src = [
 		`${apiHost}/js/script`,
@@ -93,15 +101,31 @@
 		hash ? 'hash' : undefined,
 		local ? 'local' : undefined,
 		outboundLinks ? 'outbound-links' : undefined,
+		pageviewprops ? 'pageview-props' : undefined,
 		'js'
 	]
 		.filter(Boolean)
 		.join('.');
+
+	function setPageviewProps(node) {
+		if (pageviewprops === undefined) return false;
+		Object.keys(pageviewprops).length
+			? Object.entries(pageviewprops).map((prop, i) => {
+					node.setAttribute(`event-${prop[0]}`, prop[1]);
+			  })
+			: false;
+	}
 </script>
 
 <svelte:head>
 	{#if enabled}
-		<script data-api={api} data-domain={domain.toString()} defer {src}></script>
+		<script
+			data-api={api}
+			data-domain={domain.toString()}
+			defer
+			{src}
+			use:setPageviewProps
+		></script>
 		<script>
 			window.plausible =
 				window.plausible ||
