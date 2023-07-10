@@ -1,4 +1,5 @@
 <script context="module" lang="ts">
+	import type { Action } from 'svelte/action';
 	interface PlausibleTracker {
 		(event: string, options?: any): void;
 	}
@@ -93,6 +94,13 @@
 	 */
 	export let pageviewprops = false as { prop: string | boolean } | boolean;
 
+	const setPageviewProps: Action<HTMLElement> | boolean = (node) => {
+		if (!pageviewprops) return;
+		Object.entries(pageviewprops).map((prop, i) =>
+			node.setAttribute(`event-${prop[0]}`, `${prop[1]}`)
+		);
+	};
+
 	$: api = `${apiHost}/api/event`;
 	$: src = [
 		`${apiHost}/js/script`,
@@ -106,15 +114,6 @@
 	]
 		.filter(Boolean)
 		.join('.');
-
-	function setPageviewProps(node) {
-		if (pageviewprops === undefined) return false;
-		Object.keys(pageviewprops).length
-			? Object.entries(pageviewprops).map((prop, i) => {
-					node.setAttribute(`event-${prop[0]}`, prop[1]);
-			  })
-			: false;
-	}
 </script>
 
 <svelte:head>
