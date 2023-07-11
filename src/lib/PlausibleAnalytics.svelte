@@ -88,8 +88,9 @@
 
 	/**
 	 * Add custom properties to pageviews.
-	 * This is a standard single-level object with {"name" | name: "string" | boolean}.
-	 * (See Plausible's documentation for dashboard configuration details.)
+	 * Holds the page view props to be used in the application.
+	 * It can either be a boolean value or an object with the 'prop' property of type string or boolean.
+	 * (See Plausible's documentation for dashboard filtering by custom property details.)
 	 * @defaultValue `Object`
 	 */
 	export let pageviewprops: { prop: string | boolean } | boolean = false;
