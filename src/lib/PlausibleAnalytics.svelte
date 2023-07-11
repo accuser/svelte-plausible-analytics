@@ -96,9 +96,10 @@
 
 	const setPageviewProps: Action<HTMLElement> | boolean = (node) => {
 		if (!pageviewprops) return;
-		Object.entries(pageviewprops).map((prop, i) =>
-			node.setAttribute(`event-${prop[0]}`, `${prop[1]}`)
-		);
+		Object.entries(pageviewprops).map((prop) => {
+			if (prop[1] === false) return false;
+			node.setAttribute(`event-${prop[0]}`, `${prop[1]}`);
+		});
 	};
 
 	$: api = `${apiHost}/api/event`;
