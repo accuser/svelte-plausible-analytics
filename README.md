@@ -37,7 +37,7 @@ npm i --save-dev @accuser/svelte-plausible-analytics
 
   <PlausibleAnalytics
       enabled={true}
-      pageviewprops={{
+      pageviewProps={{
         route,
         willNotBeIncluded: false,
         message: `a template literal containing a ${dynamicValue}`,
@@ -49,11 +49,11 @@ npm i --save-dev @accuser/svelte-plausible-analytics
 <slot />
 ```
 
-Set custom properties in the `pageviewprops` Svelte prop on the `<PlausibleAnalytics />` component. *Beware race conditions and take note of when `<PlausibleAnalytics />` is mounted.*
+Set custom properties in the `pageviewProps` Svelte prop on the `<PlausibleAnalytics />` component. *Beware hydration race conditions and take note when `<PlausibleAnalytics />` is mounted. Especially with SSG.*
 
-The Plausible-required `event-` prefix can be omitted. Eg. `<PlausibleAnalytics pageviewprops={{"my-fancy-prop": "a value"}} />` becomes `<script src="https://plausible.io/js/script.pageview-props.js" event-my-fancy-prop"="a value"></script>`.
+The Plausible-required `event-` prefix can be omitted. Eg. `<PlausibleAnalytics pageviewProps={{"my-fancy-prop": "a value"}} />` becomes `<script src="https://plausible.io/js/script.pageview-props.js" event-my-fancy-prop"="a value"></script>`.
 
-*Note*: as per the Plausible documentation, up to 30 custom properties can be included alongside a pageview by adding multiple attributes.
+*Note*: as per the [Plausible documentation](https://plausible.io/docs/custom-props/introduction#limits), up to 30 custom properties can be included alongside a pageview by adding multiple attributes.
 
 ### Track analytics events:
 

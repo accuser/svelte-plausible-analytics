@@ -90,16 +90,27 @@
 	 * Add custom properties to pageviews.
 	 * Holds the page view props to be used in the application.
 	 * It can either be a boolean value or an object with the 'prop' property of type string or boolean.
-	 * (See Plausible's documentation for dashboard filtering by custom property details.)
+	 * (See below documentation for dashboard filtering by custom property details.)
+	 * @link https://plausible.io/docs/guided-tour#filtering
 	 * @defaultValue `Object`
 	 */
-	export let pageviewprops: { prop: string | boolean } | boolean = false;
+	export let pageviewProps: { prop: string | boolean } | boolean = false;
 
-	const setPageviewProps: Action<HTMLElement> | boolean = (node) => {
-		if (!pageviewprops) return;
-		Object.entries(pageviewprops).map((prop) => {
-			if (prop[1] === false) return false;
-			node.setAttribute(`event-${prop[0]}`, `${prop[1]}`);
+	/**
+	 * Sets the page view props as attributes on the provided HTML element.
+	 * @param node The HTML <script> element to set attributes on.
+	 */
+	const setPageviewProps: Action<HTMLScriptElement> | boolean = (node) => {
+		// If pageviewprops is not defined or falsy, return early.
+		if (!pageviewProps) return;
+
+		// Iterate over each key-value pair in pageviewProps.
+		Object.entries(pageviewProps).forEach(([key, value]) => {
+			// If the value is not explicitly false, set the attribute on the element.
+			if (value !== false) {
+				// Set the attribute in the format 'event-key' with the stringified value.
+				node.setAttribute(`event-${key}`, String(value));
+			}
 		});
 	};
 
@@ -111,7 +122,7 @@
 		hash ? 'hash' : undefined,
 		local ? 'local' : undefined,
 		outboundLinks ? 'outbound-links' : undefined,
-		pageviewprops ? 'pageview-props' : undefined,
+		pageviewProps ? 'pageview-props' : undefined,
 		'js'
 	]
 		.filter(Boolean)
