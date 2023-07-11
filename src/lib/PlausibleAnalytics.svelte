@@ -92,7 +92,7 @@
 	 * (See Plausible's documentation for dashboard configuration details.)
 	 * @defaultValue `Object`
 	 */
-	export let pageviewprops = false as { prop: string | boolean } | boolean;
+	export let pageviewprops: { prop: string | boolean } | boolean = false;
 
 	const setPageviewProps: Action<HTMLElement> | boolean = (node) => {
 		if (!pageviewprops) return;
