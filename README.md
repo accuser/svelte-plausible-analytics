@@ -13,7 +13,7 @@ npm i --save-dev @accuser/svelte-plausible-analytics
 
 ## Examples
 
-Add Plausible Analytics to the root layout to track page views.
+### Add Plausible Analytics to the root layout to track page views.
 
 ```svelte
 <script>
@@ -25,25 +25,37 @@ Add Plausible Analytics to the root layout to track page views.
 <slot />
 ```
 
-Add custom properties to page views:
+### Add custom properties to page views:
 
 ```svelte
 <script>
+  import { page } from "$app/stores";
   import { PlausibleAnalytics } from '@accuser/svelte-plausible-analytics';
+
+  $: ({ id: route } = $page?.route); // beware duplicate plausible calls
 </script>
 
-<PlausibleAnalytics pageviewprops={{"fancy-hyphenated-prop": "fancy value string", somekindofboolean: false}} />
+  <PlausibleAnalytics
+      enabled={true}
+      pageviewprops={{
+        route,
+        willNotBeIncluded: false,
+        message: `a template literal containing a ${dynamicValue}`,
+        testingFilter: "test-some-scenario",
+        "hyphenated-property": "filter value",
+      }}
+  />
 
 <slot />
 ```
 
-*Note*: as per the Plausible documentation, up to 30 custom properties can be included alongside a pageview by adding multiple attributes.
-
-Set custom properties in the `pageviewprops` Svelte prop on the `<PlausibleAnalytics />` component. 
+Set custom properties in the `pageviewprops` Svelte prop on the `<PlausibleAnalytics />` component. *Beware race conditions and take note of when `<PlausibleAnalytics />` is mounted.*
 
 The Plausible-required `event-` prefix can be omitted. Eg. `<PlausibleAnalytics pageviewprops={{"my-fancy-prop": "a value"}} />` becomes `<script src="https://plausible.io/js/script.pageview-props.js" event-my-fancy-prop"="a value"></script>`.
 
-Track analytics events:
+*Note*: as per the Plausible documentation, up to 30 custom properties can be included alongside a pageview by adding multiple attributes.
+
+### Track analytics events:
 
 ```svelte
 <script>
@@ -55,7 +67,7 @@ Track analytics events:
 <button on:click={login('Button')}>Click to login!</button>
 ```
 
-Track custom events:
+### Track custom events:
 
 ```svelte
 <script>
