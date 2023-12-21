@@ -8,7 +8,7 @@
 		"svelte",
 		"sveltekit"
 	],
-	"homepage": "https://github.com/accuser/svelte-plausible-analytics/README.md",
+	"homepage": "https://github.com/accuser/svelte-plausible-analytics",
 	"bugs": {
 		"url": "https://github.com/accuser/svelte-plausible-analytics/issues"
 	},
