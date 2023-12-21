@@ -17,6 +17,16 @@
 		"name": "Matthew Gibbons",
 		"url": "https://github.com/accuser"
 	},
+	"contributors": [
+		{
+			"name": "Jeffrey Palmer",
+			"url": "https://github.com/JeffreyPalmer"
+		},
+		{
+			"name": "Dan Grebb",
+			"url": "https://github.com/dgrebb"
+		}
+	],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/accuser/svelte-plausible-analytics.git"
