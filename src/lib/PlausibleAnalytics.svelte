@@ -1,4 +1,5 @@
 <script context="module" lang="ts">
+	import type { Action } from 'svelte/action';
 	interface PlausibleTracker {
 		(event: string, options?: any): void;
 	}
@@ -85,6 +86,34 @@
 	 */
 	export let outboundLinks = false;
 
+	/**
+	 * Add custom properties to pageviews.
+	 * Holds the page view props to be used in the application.
+	 * It can either be a boolean value or an object with the 'prop' property of type string or boolean.
+	 * (See below documentation for dashboard filtering by custom property details.)
+	 * @link https://plausible.io/docs/guided-tour#filtering
+	 * @defaultValue `Object`
+	 */
+	export let pageviewProps: { prop: string | boolean } | boolean = false;
+
+	/**
+	 * Sets the page view props as attributes on the provided HTML element.
+	 * @param node The HTML <script> element to set attributes on.
+	 */
+	const setPageviewProps: Action<HTMLScriptElement> | boolean = (node) => {
+		// If pageviewprops is not defined or falsy, return early.
+		if (!pageviewProps) return;
+
+		// Iterate over each key-value pair in pageviewProps.
+		Object.entries(pageviewProps).forEach(([key, value]) => {
+			// If the value is not explicitly false, set the attribute on the element.
+			if (value !== false) {
+				// Set the attribute in the format 'event-key' with the stringified value.
+				node.setAttribute(`event-${key}`, String(value));
+			}
+		});
+	};
+
 	$: api = `${apiHost}/api/event`;
 	$: src = [
 		`${apiHost}/js/script`,
@@ -93,6 +122,7 @@
 		hash ? 'hash' : undefined,
 		local ? 'local' : undefined,
 		outboundLinks ? 'outbound-links' : undefined,
+		pageviewProps ? 'pageview-props' : undefined,
 		'js'
 	]
 		.filter(Boolean)
@@ -101,7 +131,13 @@
 
 <svelte:head>
 	{#if enabled}
-		<script data-api={api} data-domain={domain.toString()} defer {src}></script>
+		<script
+			data-api={api}
+			data-domain={domain.toString()}
+			defer
+			{src}
+			use:setPageviewProps
+		></script>
 		<script>
 			window.plausible =
 				window.plausible ||
