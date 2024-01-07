@@ -12,7 +12,7 @@ npm i --save-dev @accuser/svelte-plausible-analytics
 
 ## Usage
 
-It is recommended to add your `<PlausibleAnalytics />` component to the root layout of your app. In most cases this will be `src/routes/+layout.svelte`.
+It is recommended to add the `<PlausibleAnalytics />` component to the root layout of your app. In most cases this will be `src/routes/+layout.svelte`.
 
 ```svelte
 <script>
