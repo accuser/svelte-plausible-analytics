@@ -85,6 +85,12 @@
 	 */
 	export let outboundLinks = false;
 
+	/**
+	 * Allow analytics to track revenue via event properties.
+	 * @defaultValue `false`
+	 */
+	export let revenue = false;
+
 	$: api = `${apiHost}/api/event`;
 	$: src = [
 		`${apiHost}/js/script`,
@@ -93,6 +99,7 @@
 		hash ? 'hash' : undefined,
 		local ? 'local' : undefined,
 		outboundLinks ? 'outbound-links' : undefined,
+		revenue ? 'revenue' : undefined,
 		'js'
 	]
 		.filter(Boolean)
