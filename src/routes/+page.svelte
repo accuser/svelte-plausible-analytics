@@ -1,5 +1,1 @@
-<script>
-	import PlausibleAnalytics from '$lib/PlausibleAnalytics.svelte';
-</script>
-
-<PlausibleAnalytics />
+<h1>Hello, World!</h1>
