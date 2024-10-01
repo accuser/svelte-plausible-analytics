@@ -75,5 +75,7 @@
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"type": "module",
-	"dependencies": {}
+	"dependencies": {
+		"plausible-tracker": "^0.3.9"
+	}
 }
