@@ -1,9 +1,7 @@
 .DS_Store
 node_modules
-/build
-/dist
-/.svelte-kit
-/package
+.pnpm-store
+.svelte-kit
 .env
 .env.*
 !.env.example
