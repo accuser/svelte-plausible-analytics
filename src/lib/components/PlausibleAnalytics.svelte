@@ -1,5 +1,5 @@
 <script lang="ts">
-	import events from '$lib/components/events/events.svelte.js';
+	import events from '$lib/events/events.svelte.js';
 	import { type PlausibleOptions } from 'plausible-tracker';
 
 	type Props = PlausibleOptions & {
