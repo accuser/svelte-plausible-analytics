@@ -1,2 +1,2 @@
-export { default as PlausibleAnalytics } from './PlausibleAnalytics.svelte';
-export { pa } from './store.js';
+export { default as PlausibleAnalytics } from '$lib/components/PlausibleAnalytics.svelte';
+export { default as pa } from './pa.js';
