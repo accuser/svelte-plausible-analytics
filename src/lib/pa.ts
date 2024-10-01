@@ -1,5 +1,5 @@
-import addEvent from './events/add-event.js';
-import props from './props.js';
+import addEvent from '$lib/events/add-event.js';
+import props from '$lib/props.js';
 
 export default {
 	addEvent,
