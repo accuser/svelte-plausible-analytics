@@ -106,11 +106,11 @@
 		[
 			`${apiHost ?? 'https://plausible.io'}/js/script`,
 			compat ? 'compat' : undefined,
+			event ? 'pageview-props' : undefined,
 			fileDownloads ? 'file-downloads' : undefined,
 			hashMode ? 'hash' : undefined,
 			revenue ? 'revenue' : undefined,
 			trackCustomEvents ? 'tagged-events' : undefined,
-			event ? 'pageview-props' : undefined,
 			trackLocalhost ? 'local' : undefined,
 			trackOutboundLinks ? 'outbound-links' : undefined,
 			trackCustomEvents ? 'tagged-events' : undefined,
